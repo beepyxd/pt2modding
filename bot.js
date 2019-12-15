@@ -7,7 +7,7 @@ process.on('unhandledRejection', (reason, promise) => {
 		process.exit(1);
 	}
 });
-client.on('ready', () => {console.log("I'm ready!")});
+client.on('ready', async () => {console.log("I'm ready!")});
 client.on('message', async message => {
   if(message.content.indexOf("<@655703534733492235>")!=-1||message.content.indexOf("<@!655703534733492235>")!=-1) {message.react(":thinkping:512223822053769216").catch(()=>{})}
   if(message.author.bot) return;
