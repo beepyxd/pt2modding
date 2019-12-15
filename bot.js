@@ -13,9 +13,6 @@ client.on('ready', async () => {
 });
 client.on('message', async message => {
   if(message.content.indexOf("<@655703534733492235>")!=-1||message.content.indexOf("<@!655703534733492235>")!=-1) {message.react(":thinkping:512223822053769216").catch(()=>{})}
-  if(message.channel.type!=="dm"){
-  	if (message.channel.id!=="581184610067808298") return message.react(":whyhere:582157451848187904");
-  }
   if(message.author.bot) return;
   var messageArray = message.content.split(" ");
   if (messageArray.length>0) {var cmd = messageArray[0].toLowerCase()} else {return}
@@ -28,7 +25,10 @@ client.on('message', async message => {
   let commandfile = cmd.slice(prefix.length);
   //commands
   if (commandfile==="ping") {
-    var the_ping = Math.round(client.ping)-118;
+    if(message.channel.type!=="dm"){
+	if (message.channel.id!=="581184610067808298") return message.react(":whyhere:582157451848187904");
+    }
+    var the_ping = Math.round(client.ping);
     if (the_ping<100) {var color = "#00ff00"}
     else if (the_ping>99&&the_ping<500) {var color = "#ffff00"}
     else {var color = "#ff0000"}
@@ -36,8 +36,10 @@ client.on('message', async message => {
     .setColor(color)
     .setDescription("Ping is **"+the_ping+"ms**")
     message.channel.send(n_embed);
-  }
-  if (commandfile==="say") {
+  } else if (commandfile==="say") {
+    if(message.channel.type!=="dm"){
+	if (message.channel.id!=="581184610067808298") return message.react(":whyhere:582157451848187904");
+    }
     if (args.length > 0) {
 	if(message.channel.type!=="dm") {
 		message.delete(msg => msg.delete(1)).catch(()=>{});
@@ -46,6 +48,15 @@ client.on('message', async message => {
     } else {
 	return message.reply(":x: Please put your text!");
     }
+  } else if (commandfile==="help") {
+    if(message.channel.type!=="dm"){
+	if (message.channel.id!=="581184610067808298") return message.react(":whyhere:582157451848187904");
+    }
+    let serverembed = new Discord.MessageEmbed()
+    .setColor("#00ffff")
+    .setTitle(lang[409])
+    .setDescription("• `pt2ping` - Bot's ping\n• `pt2say` - Bot send your message")
+    return message.channel.send(serverembed);
   }
 });
 
