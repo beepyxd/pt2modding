@@ -13,6 +13,9 @@ client.on('ready', async () => {
 });
 client.on('message', async message => {
   if(message.content.indexOf("<@655703534733492235>")!=-1||message.content.indexOf("<@!655703534733492235>")!=-1) {message.react(":thinkping:512223822053769216").catch(()=>{})}
+  if(message.channel.type!=="dm"){
+  	if (message.channel.id!=="581184610067808298") return message.react(":whyhere:582157451848187904");
+  }
   if(message.author.bot) return;
   var messageArray = message.content.split(" ");
   if (messageArray.length>0) {var cmd = messageArray[0].toLowerCase()} else {return}
@@ -33,6 +36,16 @@ client.on('message', async message => {
     .setColor(color)
     .setDescription("Ping is **"+the_ping+"ms**")
     message.channel.send(n_embed);
+  }
+  if (commandfile==="say") {
+    if (args.length > 0) {
+	if(message.channel.type!=="dm") {
+		message.delete(msg => msg.delete(1)).catch(()=>{});
+	}
+	return message.channel.send(args.join(" "));
+    } else {
+	return message.reply(":x: Please put your text!");
+    }
   }
 });
 
