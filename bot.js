@@ -26,7 +26,7 @@ client.on('message', async message => {
     if (the_ping<100) {var color = "#00ff00"}
     else if (the_ping>99&&the_ping<500) {var color = "#ffff00"}
     else {var color = "#ff0000"}
-    let n_embed = new Discord.RichEmbed()
+    const n_embed = new Discord.RichEmbed()
     .setColor(color)
     .setDescription("Ping is **"+the_ping+"ms**")
     message.channel.send(n_embed);
