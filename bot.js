@@ -52,7 +52,7 @@ client.on('message', async message => {
     if(message.channel.type!=="dm"){
 	if (message.channel.id!=="581184610067808298") return message.react(":whyhere:582157451848187904");
     }
-    let serverembed = new Discord.MessageEmbed()
+    let serverembed = new Discord.RichEmbed()
     .setColor("#00ffff")
     .setTitle(lang[409])
     .setDescription("• `pt2ping` - Bot's ping\n• `pt2say` - Bot send your message")
