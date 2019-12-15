@@ -54,7 +54,7 @@ client.on('message', async message => {
     }
     let serverembed = new Discord.RichEmbed()
     .setColor("#00ffff")
-    .setTitle(lang[409])
+    .setTitle("All commands")
     .setDescription("• `pt2ping` - Bot's ping\n• `pt2say` - Bot send your message")
     return message.channel.send(serverembed);
   }
