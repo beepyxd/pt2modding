@@ -22,7 +22,7 @@ client.on('message', async message => {
   let commandfile = cmd.slice(prefix.length);
   //commands
   if (commandfile==="ping") {
-    var the_ping = Math.round(bot.ping)-118;
+    var the_ping = Math.round(client.ping)-118;
     if (the_ping<100) {var color = "#00ff00"}
     else if (the_ping>99&&the_ping<500) {var color = "#ffff00"}
     else {var color = "#ff0000"}
