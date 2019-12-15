@@ -8,7 +8,7 @@ process.on('unhandledRejection', (reason, promise) => {
   }
 });
 client.on('ready', async () => {
-	bot.user.setActivity(`pt2 | Commands in progress!`, {type: "LISTENING"});
+	client.user.setActivity(`pt2 | Commands in progress!`, {type: "LISTENING"});
 	console.log("I'm ready!")
 });
 client.on('message', async message => {
