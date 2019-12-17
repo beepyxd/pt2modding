@@ -270,7 +270,8 @@ client.on('message', async message => {
 						else {special_tiles2[i]=special_tiles2[i].replace(/k|\x3c|\x3e|\x2c/g, "")}
 					}
 					special_tiles2=special_tiles2.map(({length}) => {
-						const length_of_tile=length*multiplying1;
+						const x = length;
+						const length_of_tile=x*multiplying1;
 						let m=length_of_tile%1;
 						if (length_of_tile==1&&m==0) {m=0}
 						else if (length_of_tile<1.5&&length_of_tile>1) {m=1}
@@ -289,7 +290,8 @@ client.on('message', async message => {
 						}
 					}
 					first_path_id1_normal_new=first_path_id1_normal.map(({length}) => {
-						const length_of_tile=length*multiplying1;
+						const x = length;
+						const length_of_tile=x*multiplying1;
 						let m=length_of_tile%1;
 						if (length_of_tile==1&&m==0) {m=0}
 						else if (length_of_tile<1.5&&length_of_tile>1) {m=1}
@@ -353,7 +355,8 @@ client.on('message', async message => {
 						else {special_tiles2[i]=special_tiles2[i].replace(/k|\x3c|\x3e|\x2c/g, "")}
 					}
 					special_tiles2=special_tiles2.map(({length}) => {
-						const length_of_tile=length*multiplying2;
+						const x = length;
+						const length_of_tile=x*multiplying2;
 						let m=length_of_tile%1;
 						if (length_of_tile==1&&m==0) {m=0}
 						else if (length_of_tile<1.5&&length_of_tile>1) {m=1}
@@ -372,7 +375,8 @@ client.on('message', async message => {
 						}
 					}
 					first_path_id2_normal_new=first_path_id2_normal.map(({length}) => {
-						const length_of_tile=length*multiplying2;
+						const x = length;
+						const length_of_tile=x*multiplying2;
 						let m=length_of_tile%1;
 						if (length_of_tile==1&&m==0) {m=0}
 						else if (length_of_tile<1.5&&length_of_tile>1) {m=1}
@@ -436,7 +440,8 @@ client.on('message', async message => {
 						else {special_tiles2[i]=special_tiles2[i].replace(/k|\x3c|\x3e|\x2c/g, "")}
 					}
 					special_tiles2=special_tiles2.map(({length}) => {
-						const length_of_tile=length*multiplying3;
+						const x = length;
+						const length_of_tile=x*multiplying3;
 						let m=length_of_tile%1;
 						if (length_of_tile==1&&m==0) {m=0}
 						else if (length_of_tile<1.5&&length_of_tile>1) {m=1}
@@ -455,7 +460,8 @@ client.on('message', async message => {
 						}
 					}
 					first_path_id3_normal_new=first_path_id3_normal.map(({length}) => {
-						const length_of_tile=length*multiplying3;
+						const x = length;
+						const length_of_tile=x*multiplying3;
 						let m=length_of_tile%1;
 						if (length_of_tile==1&&m==0) {m=0}
 						else if (length_of_tile<1.5&&length_of_tile>1) {m=1}
@@ -529,7 +535,8 @@ client.on('message', async message => {
 						}
 					}
 					first_path_id_bg_new=first_path_id_bg.map(({length}) => {
-						const length_of_tile=length*multiplying1;
+						const x = length;
+						const length_of_tile=x*multiplying1;
 						let m=length_of_tile%1;
 						if (length_of_tile==1&&m==0) {m=0}
 						else if (length_of_tile<1.5&&length_of_tile>1) {m=1}
@@ -600,7 +607,8 @@ client.on('message', async message => {
 						}
 					}
 					second_path_id_bg_new=second_path_id_bg.map(({length}) => {
-						const length_of_tile=length*multiplying2;
+						const x = length;
+						const length_of_tile=x*multiplying2;
 						let m=length_of_tile%1;
 						if (length_of_tile==1&&m==0) {m=0}
 						else if (length_of_tile<1.5&&length_of_tile>1) {m=1}
@@ -673,7 +681,8 @@ client.on('message', async message => {
 						}
 					}
 					third_path_id_bg_new=third_path_id_bg.map(({length}) => {
-						const length_of_tile=length*multiplying3;
+						const x = length;
+						const length_of_tile=x*multiplying3;
 						let m=length_of_tile%1;
 						if (length_of_tile==1&&m==0) {m=0}
 						else if (length_of_tile<1.5&&length_of_tile>1) {m=1}
