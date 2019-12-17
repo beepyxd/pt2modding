@@ -59,7 +59,7 @@ client.on('message', async message => {
 	} else if (commandfile==="ci") {
 		if (message.channel.type!=="dm") {if (message.channel.id!=="581184610067808298") return message.react(":whyhere:582157451848187904")}
 		try {
-			var Attachment = message.attachments;
+			var Attachment = message.attachments[0].attachment;
 		} catch(e) {
 			return message.reply(":x: Put JSON file!");
 		}
