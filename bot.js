@@ -703,15 +703,24 @@ client.on('message', async message => {
 				}
 				var tt = info(data, bpm1, bpm2, bpm3);
 				if (Array.isArray(tt)==true) {
-					if (tt[0]==="*no delay*") {var color="#00ff00"} else {var color="#ff8800"}
-					var serverembed = new Discord.RichEmbed()
-					.setColor(color)
-					.setTitle("Info checker")
-					.addField("Duration", tt[3])
-					.addField("Points per round", tt[4])
-					.addField("Speeds", tt[2])
-					.addField("Tiles info", tt[1])
-					.addField("Delay", tt[0])
+					if (tt[0]==="*no delay*") {
+						var serverembed = new Discord.RichEmbed()
+						.setColor("#00ff00")
+						.setTitle("Info checker")
+						.addField("Duration", tt[3], true)
+						.addField("Points per round", tt[4], true)
+						.addField("Speeds", tt[2], true)
+						.addField("Tiles info", tt[1])
+					} else {
+						var serverembed = new Discord.RichEmbed()
+						.setColor("#ff8800")
+						.setTitle("Info checker")
+						.addField("Duration", tt[3], true)
+						.addField("Points per round", tt[4], true)
+						.addField("Speeds", tt[2], true)
+						.addField("Tiles info", tt[1])
+						.addField("Delay", tt[0])
+					}
 					return message.channel.send(serverembed);
 				} else {
 					message.reply(tt);
