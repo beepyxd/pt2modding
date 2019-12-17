@@ -1,4 +1,6 @@
 const Discord = require("discord.js");
+const _ = require('lodash');
+const errors = require('./js/error_checker.js');
 const client = new Discord.Client({fetchAllMembers: true, disableEveryone: true});
 process.on('unhandledRejection', (reason, promise) => {
   reason = String(reason);
