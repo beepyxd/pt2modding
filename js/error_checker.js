@@ -27,7 +27,7 @@ module.exports = {
 		if (a3_match==null) {a3_match=")"}
 		a4=paths[i].indexOf("["); a4_match=paths[i].match(/\x5b/g);
 		if (a4_match==null) {a4_match="["}
-		a_match=a1_match+a2_match+a3_match+a4_match; a4=a4-1;
+		a_match=a1_match+a2_match+a3_match+a4_match;
 		if (paths[i].indexOf("(")>0) {result=paths[i]}
 		else if (paths[i].includes("\"")||paths[i].includes("\'")||paths[i].includes("*")||paths[i].includes("?")||paths[i].includes("|")||paths[i].includes("+")||paths[i].includes("_")||paths[i].includes("=")||paths[i].includes(":")||paths[i].includes("`")||paths[i].includes("\\")||paths[i].includes("Z")||paths[i].includes("z")) {result=paths[i]}
 		else if (paths[i].includes("\r")||paths[i].includes("\n")) {result="used enter"}
@@ -38,7 +38,7 @@ module.exports = {
 		else if (a2==-1&&paths[i].includes("[")) {result=paths[i]}
 		else if (paths[i].includes(")]")) {result=paths[i]}
 		else if (a3!=a4&&a3>-1&&a4>-1) {result=paths[i]}
-		else if (a4<=-1) {result=paths[i]}
+		else if (a4==-1&&paths[i].includes("]")) {result=paths[i]}
 		else if (a_match.match(/\x28/g).length>1||a_match.match(/\x29/g).length>1||a_match.match(/\x5b/g).length>1||a_match.match(/\x5d/g).length>1) {result=paths[i]}
 		else {
 			a5=paths[i].indexOf("{"); a6=paths[i].indexOf("}"); a6=a6-2;
