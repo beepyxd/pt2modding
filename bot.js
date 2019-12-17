@@ -27,8 +27,8 @@ client.on('message', async message => {
 	messageArray=messageArray2;
 	var prefix = "pt2";
 	if (cmd.indexOf(prefix)!=0) return;
-	let args = messageArray.slice(1);
-	let commandfile = cmd.slice(prefix.length);
+	var args = messageArray.slice(1);
+	var commandfile = cmd.slice(prefix.length);
 	//commands
 	if (commandfile==="ping") {
 		if (message.channel.type!=="dm") {if (message.channel.id!=="581184610067808298") return message.react(":whyhere:582157451848187904")}
@@ -52,7 +52,7 @@ client.on('message', async message => {
 		}
 	} else if (commandfile==="help") {
 		if (message.channel.type!=="dm") {if (message.channel.id!=="581184610067808298") return message.react(":whyhere:582157451848187904")}
-		let serverembed = new Discord.RichEmbed()
+		var serverembed = new Discord.RichEmbed()
 		.setColor("#00ffff")
 		.setTitle("All commands")
 		.setDescription("• `pt2ping` - Bot's ping\n• `pt2say` - Bot send your message")
@@ -243,7 +243,7 @@ client.on('message', async message => {
 					}
 					special_tiles2=special_tiles2.map(({length}) => {
 						const length_of_tile=length*multiplying1;
-						let m=length_of_tile%1;
+						var m=length_of_tile%1;
 						if (length_of_tile==1&&m==0) {m=0}
 						else if (length_of_tile<1.5&&length_of_tile>1) {m=1}
 						else if (length_of_tile<2&&length_of_tile>=1.5) {m=2}
@@ -262,7 +262,7 @@ client.on('message', async message => {
 					}
 					var first_path_id1_normal_new=first_path_id1_normal.map(({length}) => {
 						const length_of_tile=length*multiplying1;
-						let m=length_of_tile%1;
+						var m=length_of_tile%1;
 						if (length_of_tile==1&&m==0) {m=0}
 						else if (length_of_tile<1.5&&length_of_tile>1) {m=1}
 						else if (length_of_tile<2&&length_of_tile>=1.5) {m=2}
@@ -323,7 +323,7 @@ client.on('message', async message => {
 					}
 					var special_tiles2=special_tiles2.map(({length}) => {
 						const length_of_tile=length*multiplying2;
-						let m=length_of_tile%1;
+						var m=length_of_tile%1;
 						if (length_of_tile==1&&m==0) {m=0}
 						else if (length_of_tile<1.5&&length_of_tile>1) {m=1}
 						else if (length_of_tile<2&&length_of_tile>=1.5) {m=2}
@@ -342,7 +342,7 @@ client.on('message', async message => {
 					}
 					var first_path_id2_normal_new=first_path_id2_normal.map(({length}) => {
 						const length_of_tile=length*multiplying2;
-						let m=length_of_tile%1;
+						var m=length_of_tile%1;
 						if (length_of_tile==1&&m==0) {m=0}
 						else if (length_of_tile<1.5&&length_of_tile>1) {m=1}
 						else if (length_of_tile<2&&length_of_tile>=1.5) {m=2}
@@ -403,7 +403,7 @@ client.on('message', async message => {
 					}
 					var special_tiles2=special_tiles2.map(({length}) => {
 						const length_of_tile=length*multiplying3;
-						let m=length_of_tile%1;
+						var m=length_of_tile%1;
 						if (length_of_tile==1&&m==0) {m=0}
 						else if (length_of_tile<1.5&&length_of_tile>1) {m=1}
 						else if (length_of_tile<2&&length_of_tile>=1.5) {m=2}
@@ -422,7 +422,7 @@ client.on('message', async message => {
 					}
 					var first_path_id3_normal_new=first_path_id3_normal.map(({length}) => {
 						const length_of_tile=length*multiplying3;
-						let m=length_of_tile%1;
+						var m=length_of_tile%1;
 						if (length_of_tile==1&&m==0) {m=0}
 						else if (length_of_tile<1.5&&length_of_tile>1) {m=1}
 						else if (length_of_tile<2&&length_of_tile>=1.5) {m=2}
@@ -496,7 +496,7 @@ client.on('message', async message => {
 					}
 					var first_path_id_bg_new=first_path_id_bg.map(({length}) => {
 						const length_of_tile=length*multiplying1;
-						let m=length_of_tile%1;
+						var m=length_of_tile%1;
 						if (length_of_tile==1&&m==0) {m=0}
 						else if (length_of_tile<1.5&&length_of_tile>1) {m=1}
 						else if (length_of_tile<2&&length_of_tile>=1.5) {m=2}
@@ -567,7 +567,7 @@ client.on('message', async message => {
 					}
 					var second_path_id_bg_new=second_path_id_bg.map(({length}) => {
 						const length_of_tile=length*multiplying2;
-						let m=length_of_tile%1;
+						var m=length_of_tile%1;
 						if (length_of_tile==1&&m==0) {m=0}
 						else if (length_of_tile<1.5&&length_of_tile>1) {m=1}
 						else if (length_of_tile<2&&length_of_tile>=1.5) {m=2}
@@ -640,7 +640,7 @@ client.on('message', async message => {
 					}
 					var third_path_id_bg_new=third_path_id_bg.map(({length}) => {
 						const length_of_tile=length*multiplying3;
-						let m=length_of_tile%1;
+						var m=length_of_tile%1;
 						if (length_of_tile==1&&m==0) {m=0}
 						else if (length_of_tile<1.5&&length_of_tile>1) {m=1}
 						else if (length_of_tile<2&&length_of_tile>=1.5) {m=2}
@@ -659,7 +659,7 @@ client.on('message', async message => {
 					//all points
 					var all_points=parseInt(path_special)+parseInt(path_normal)+parseInt(all_bg_points);
 					var ppr = `${all_points}`;
-					let star1=first_path_id1; let star2=first_path_id2; let star3=first_path_id3;
+					var star1=first_path_id1; var star2=first_path_id2; var star3=first_path_id3;
 					const full_lap=star1+star2+star3;
 					doubles_amount=(full_lap.match(/5\x3c/g)||[]).length;
 					combo_amount=(full_lap.match(/3\x3c/g)||[]).length;
@@ -704,7 +704,7 @@ client.on('message', async message => {
 				var tt = info(data, bpm1, bpm2, bpm3);
 				if (Array.isArray(tt)==true) {
 					if (tt[0]==="*no delay*") {var color="#00ff00"} else {var color="#ffff00"}
-					let serverembed = new Discord.RichEmbed()
+					var serverembed = new Discord.RichEmbed()
 					.setColor(color)
 					.setTitle("Info checker")
 					.addField("Duration", tt[3])
