@@ -106,8 +106,9 @@ client.on('message', async message => {
 					var first_path_id2=id2[0]; var id2_err=id2.join();
 					var first_path_id3=id3[0]; var id3_err=id3.join();
 					var id1_path_bg1=[]; var id2_path_bg1=[]; var id3_path_bg1=[];
+					var stuff_remove=/1|2|3|4|5|6|7|8|9|0|\x21|\x23|\x24|\x25|\x26|\x28|\x29|\x40|\x2c|\x2d|\x2e|\x3b|\x3c|\x3e|\x5b|\x5d|\x5e|\x7b|\x7d|\x7e|mute|empty|A|B|C|D|E|F|G|a|b|c|d|e|f|g/g;
 					for (i=0; i<id1.length; i++) {
-						var a1=id1[i].replace(/1|2|3|4|5|6|7|8|9|0|\x21|\x23|\x24|\x25|\x26|\x28|\x29|\x40|\x2c|\x2d|\x2e|\x3b|\x3c|\x3e|\x5b|\x5d|\x5e|\x7b|\x7d|\x7e|mute|empty|A|B|C|D|E|F|G|a|b|c|d|e|f|g/g, "").replace(/Q/g, "RR").replace(/R/g, "SS").replace(/S/g, "TT").replace(/T/g, "UU").replace(/U/g, "VV").replace(/V/g, "WW").replace(/W/g, "XX").replace(/X/g, "YY").replace(/Y/g, "P").replace(/H/g, "II").replace(/I/g, "JJ").replace(/J/g, "KK").replace(/K/g, "LL").replace(/L/g, "MM").replace(/M/g, "NN").replace(/N/g, "OO").replace(/O/g, "PP");
+						var a1=id1[i].replace(stuff_remove, "").replace(/Q/g, "RR").replace(/R/g, "SS").replace(/S/g, "TT").replace(/T/g, "UU").replace(/U/g, "VV").replace(/V/g, "WW").replace(/W/g, "XX").replace(/X/g, "YY").replace(/Y/g, "P").replace(/H/g, "II").replace(/I/g, "JJ").replace(/J/g, "KK").replace(/K/g, "LL").replace(/L/g, "MM").replace(/M/g, "NN").replace(/N/g, "OO").replace(/O/g, "PP");
 						id1_path_bg1.push(a1.length);
 					}
 					for (i=1; i<id1_path_bg1.length; i++) {
@@ -117,22 +118,22 @@ client.on('message', async message => {
 						if (path_background!=first_length) {delay=`**DELAY ERROR:** id: ${id_first}, Path 1: ${parseFloat(first_length)}, Path ${j}: ${parseFloat(path_background)}`}
 					}
 					for (i=0; i<id2.length; i++) {
-						var a2=id2[i].replace(/1|2|3|4|5|6|7|8|9|0|\x21|\x23|\x24|\x25|\x26|\x28|\x29|\x40|\x2c|\x2d|\x2e|\x3b|\x3c|\x3e|\x5b|\x5d|\x5e|\x7b|\x7d|\x7e|mute|empty|A|B|C|D|E|F|G|a|b|c|d|e|f|g/g, "").replace(/Q/g, "RR").replace(/R/g, "SS").replace(/S/g, "TT").replace(/T/g, "UU").replace(/U/g, "VV").replace(/V/g, "WW").replace(/W/g, "XX").replace(/X/g, "YY").replace(/Y/g, "P").replace(/H/g, "II").replace(/I/g, "JJ").replace(/J/g, "KK").replace(/K/g, "LL").replace(/L/g, "MM").replace(/M/g, "NN").replace(/N/g, "OO").replace(/O/g, "PP");
+						var a2=id2[i].replace(stuff_remove, "").replace(/Q/g, "RR").replace(/R/g, "SS").replace(/S/g, "TT").replace(/T/g, "UU").replace(/U/g, "VV").replace(/V/g, "WW").replace(/W/g, "XX").replace(/X/g, "YY").replace(/Y/g, "P").replace(/H/g, "II").replace(/I/g, "JJ").replace(/J/g, "KK").replace(/K/g, "LL").replace(/L/g, "MM").replace(/M/g, "NN").replace(/N/g, "OO").replace(/O/g, "PP");
 						id2_path_bg1.push(a2.length);
 					}
 					for (i=1; i<id2_path_bg1.length; i++) {
-						var first_length=(id2_path_bg1[0]*multiplying1).toFixed(3);
-						var path_background=(id2_path_bg1[i]*multiplying1).toFixed(3);
+						var first_length=(id2_path_bg1[0]*multiplying2).toFixed(3);
+						var path_background=(id2_path_bg1[i]*multiplying2).toFixed(3);
 						j=i+1;
 						if (path_background!=first_length) {delay=`**DELAY ERROR:** id: ${id_second}, Path 1: ${parseFloat(first_length)}, Path ${j}: ${parseFloat(path_background)}`}
 					}
 					for (i=0; i<id3.length; i++) {
-						var a3=id3[i].replace(/1|2|3|4|5|6|7|8|9|0|\x21|\x23|\x24|\x25|\x26|\x28|\x29|\x40|\x2c|\x2d|\x2e|\x3b|\x3c|\x3e|\x5b|\x5d|\x5e|\x7b|\x7d|\x7e|mute|empty|A|B|C|D|E|F|G|a|b|c|d|e|f|g/g, "").replace(/Q/g, "RR").replace(/R/g, "SS").replace(/S/g, "TT").replace(/T/g, "UU").replace(/U/g, "VV").replace(/V/g, "WW").replace(/W/g, "XX").replace(/X/g, "YY").replace(/Y/g, "P").replace(/H/g, "II").replace(/I/g, "JJ").replace(/J/g, "KK").replace(/K/g, "LL").replace(/L/g, "MM").replace(/M/g, "NN").replace(/N/g, "OO").replace(/O/g, "PP");
+						var a3=id3[i].replace(stuff_remove, "").replace(/Q/g, "RR").replace(/R/g, "SS").replace(/S/g, "TT").replace(/T/g, "UU").replace(/U/g, "VV").replace(/V/g, "WW").replace(/W/g, "XX").replace(/X/g, "YY").replace(/Y/g, "P").replace(/H/g, "II").replace(/I/g, "JJ").replace(/J/g, "KK").replace(/K/g, "LL").replace(/L/g, "MM").replace(/M/g, "NN").replace(/N/g, "OO").replace(/O/g, "PP");
 						id3_path_bg1.push(a3.length);
 					}
 					for (i=1; i<id3_path_bg1.length; i++) {
-						var first_length=(id3_path_bg1[0]*multiplying1).toFixed(3);
-						var path_background=(id3_path_bg1[i]*multiplying1).toFixed(3);
+						var first_length=(id3_path_bg1[0]*multiplying3).toFixed(3);
+						var path_background=(id3_path_bg1[i]*multiplying3).toFixed(3);
 						j=i+1;
 						if (path_background!=first_length) {delay=`**DELAY ERROR:** id: ${id_third}, Path 1: ${parseFloat(first_length)}, Path ${j}: ${parseFloat(path_background)}`}
 					}
@@ -670,15 +671,15 @@ client.on('message', async message => {
 					if (basebeats1 <= 0||basebeats2 <= 0||basebeats3 <= 0) return ":x: baseBeats can't be lower or equal to 0!";
 					const speed1=parseFloat(bpm1/basebeats1/60); const speed2=parseFloat(bpm2/basebeats2/60); const speed3=parseFloat(bpm3/basebeats3/60);
 					var speed_info = `${speed1.toFixed(3)}, ${speed2.toFixed(3)}, ${speed3.toFixed(3)}`;
-					star1=star1.replace(/1|2|3|4|5|6|7|8|9|0|\x21|\x23|\x24|\x25|\x26|\x28|\x29|\x40|\x2c|\x2d|\x2e|\x3b|\x3c|\x3e|\x5b|\x5d|\x5e|\x7b|\x7d|\x7e|mute|empty|A|B|C|D|E|F|G|a|b|c|d|e|f|g/g, "").replace(/Q/g, "RR").replace(/R/g, "SS").replace(/S/g, "TT").replace(/T/g, "UU").replace(/U/g, "VV").replace(/V/g, "WW").replace(/W/g, "XX").replace(/X/g, "YY").replace(/Y/g, "P").replace(/H/g, "II").replace(/I/g, "JJ").replace(/J/g, "KK").replace(/K/g, "LL").replace(/L/g, "MM").replace(/M/g, "NN").replace(/N/g, "OO").replace(/O/g, "PP");
+					star1=star1.replace(stuff_remove, "").replace(/Q/g, "RR").replace(/R/g, "SS").replace(/S/g, "TT").replace(/T/g, "UU").replace(/U/g, "VV").replace(/V/g, "WW").replace(/W/g, "XX").replace(/X/g, "YY").replace(/Y/g, "P").replace(/H/g, "II").replace(/I/g, "JJ").replace(/J/g, "KK").replace(/K/g, "LL").replace(/L/g, "MM").replace(/M/g, "NN").replace(/N/g, "OO").replace(/O/g, "PP");
 					if (star1==="") {star1_final=0} else {star1_final=star1.match(/P/gi).length}
 					r1=(1*star1_final*multiplying1);
 					if (!Number.isInteger(r1)) {r1=(1*r1).toFixed(3)}
-					star2=star2.replace(/1|2|3|4|5|6|7|8|9|0|\x21|\x23|\x24|\x25|\x26|\x28|\x29|\x40|\x2c|\x2d|\x2e|\x3b|\x3c|\x3e|\x5b|\x5d|\x5e|\x7b|\x7d|\x7e|mute|empty|A|B|C|D|E|F|G|a|b|c|d|e|f|g/g, "").replace(/Q/g, "RR").replace(/R/g, "SS").replace(/S/g, "TT").replace(/T/g, "UU").replace(/U/g, "VV").replace(/V/g, "WW").replace(/W/g, "XX").replace(/X/g, "YY").replace(/Y/g, "P").replace(/H/g, "II").replace(/I/g, "JJ").replace(/J/g, "KK").replace(/K/g, "LL").replace(/L/g, "MM").replace(/M/g, "NN").replace(/N/g, "OO").replace(/O/g, "PP");
+					star2=star2.replace(stuff_remove, "").replace(/Q/g, "RR").replace(/R/g, "SS").replace(/S/g, "TT").replace(/T/g, "UU").replace(/U/g, "VV").replace(/V/g, "WW").replace(/W/g, "XX").replace(/X/g, "YY").replace(/Y/g, "P").replace(/H/g, "II").replace(/I/g, "JJ").replace(/J/g, "KK").replace(/K/g, "LL").replace(/L/g, "MM").replace(/M/g, "NN").replace(/N/g, "OO").replace(/O/g, "PP");
 					if (star2==="") {star2_final=0} else {star2_final=star2.match(/P/gi).length}
 					r2=(1*star2_final*multiplying2);
 					if (!Number.isInteger(r2)) {r2=(1*r2).toFixed(3)}
-					star3=star3.replace(/1|2|3|4|5|6|7|8|9|0|\x21|\x23|\x24|\x25|\x26|\x28|\x29|\x40|\x2c|\x2d|\x2e|\x3b|\x3c|\x3e|\x5b|\x5d|\x5e|\x7b|\x7d|\x7e|mute|empty|A|B|C|D|E|F|G|a|b|c|d|e|f|g/g, "").replace(/Q/g, "RR").replace(/R/g, "SS").replace(/S/g, "TT").replace(/T/g, "UU").replace(/U/g, "VV").replace(/V/g, "WW").replace(/W/g, "XX").replace(/X/g, "YY").replace(/Y/g, "P").replace(/H/g, "II").replace(/I/g, "JJ").replace(/J/g, "KK").replace(/K/g, "LL").replace(/L/g, "MM").replace(/M/g, "NN").replace(/N/g, "OO").replace(/O/g, "PP");
+					star3=star3.replace(stuff_remove, "").replace(/Q/g, "RR").replace(/R/g, "SS").replace(/S/g, "TT").replace(/T/g, "UU").replace(/U/g, "VV").replace(/V/g, "WW").replace(/W/g, "XX").replace(/X/g, "YY").replace(/Y/g, "P").replace(/H/g, "II").replace(/I/g, "JJ").replace(/J/g, "KK").replace(/K/g, "LL").replace(/L/g, "MM").replace(/M/g, "NN").replace(/N/g, "OO").replace(/O/g, "PP");
 					if (star3==="") {star3_final=0} else {star3_final=star3.match(/P/gi).length}
 					r3=(1*star3_final*multiplying3);
 					if (!Number.isInteger(r3)) {r3=(1*r3).toFixed(3)}
