@@ -60,12 +60,11 @@ client.on('message', async message => {
 		if (message.channel.type!=="dm") {if (message.channel.id!=="581184610067808298") return message.react(":whyhere:582157451848187904")}
 		try {
 			var Attachment = (message.attachments).array();
-			var the_url = Attachment[0].url;
+			var the_url = Attachment[0].file;
 		} catch(e) {
 			return message.reply(":x: Put JSON file!");
 		}
 		fs.readFile(the_url, function (err, data) {
-			console.log(data);
 			if (!!args[0]) {var bpm1 = parseFloat(args[0])} else {var bpm1=""}
 			if (!!args[1]) {var bpm2 = parseFloat(args[1])} else {var bpm2=""}
 			if (!!args[2]) {var bpm3 = parseFloat(args[2])} else {var bpm3=""}
