@@ -140,9 +140,9 @@ client.on('message', async message => {
 					var to_check_errors2=first_path_id2+id2_err;
 					var to_check_errors3=first_path_id3+id3_err;
 					const tile="P"; const space="Y";
-					var res1=errors.check(first_path_id1, to_check_errors1, multiplying1);
-					var res2=errors.check(first_path_id2, to_check_errors2, multiplying2);
-					var res3=errors.check(first_path_id3, to_check_errors3, multiplying3);
+					var res1=errors.check(first_path_id1, to_check_errors1, multiplying1, "first");
+					var res2=errors.check(first_path_id2, to_check_errors2, multiplying2, "second");
+					var res3=errors.check(first_path_id3, to_check_errors3, multiplying3, "third");
 					if (res1!=="NO ERRORS!") return res1;
 					if (res2!=="NO ERRORS!") return res2;
 					if (res3!=="NO ERRORS!") return res3;

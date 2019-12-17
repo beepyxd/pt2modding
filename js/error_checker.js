@@ -3,7 +3,7 @@ function spaces(s) {return /[^\u0051-\u0059]/.test(s)}
 function tiles(s) {return /[^\u0048-\u0050]/.test(s)}
 
 module.exports = {
-  check: function check_errors(path1, paths, multiplying) {
+  check: function check_errors(path1, paths, multiplying, path_num) {
 	path1=path1.replace(/(?:\x2c\x3b|\x2c|\x3b)/g, ','); paths=paths.replace(/(?:\x2c\x3b|\x2c|\x3b)/g, ',');
 	paths=paths.split(",");
 	result="";
@@ -182,7 +182,7 @@ module.exports = {
 	for (i=0; i<special_tiles.length; i++) {
 		if (special_tiles[i].includes("<")||special_tiles[i].includes(">")) {result=special_tiles[i]}
 	}
-	if (result1.length>0) return ":x: Tile shorter than 1 in first path (`"+result1+"`)";
+	if (result1.length>0) return ":x: Tile shorter than 1 in "+path_num+" path (`"+result1+"`)";
 	if (result.length>0) return ":x: Error result: `"+result+"`";
 	if (result_tile.length>0) return ":x: Error result: `"+result_tile+"`";
 	if (result_tile1.length>0) return ":x: Error result: `"+result_tile1+"`";
