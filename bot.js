@@ -72,33 +72,32 @@ client.on('message', async message => {
 				if (!!args[0]) {var bpm1 = parseFloat(args[0])} else {var bpm1=""}
 				if (!!args[1]) {var bpm2 = parseFloat(args[1])} else {var bpm2=""}
 				if (!!args[2]) {var bpm3 = parseFloat(args[2])} else {var bpm3=""}
-				function numbers(o) {return /[^\u0030-\u0039]/.test(o)}
 				function info(data, bpm1, bpm2, bpm3) {
 					var nbpm1 = bpm1; var nbpm2 = bpm2; var nbpm3 = bpm3;
 					var delay="*no delay*";
-					try {var new_data=JSON.parse(data)} catch(e) {return "**JSON ERROR:** Error result: `Unexpected end of JSON format`"};
-					try {var id_first=new_data.musics[0].id} catch(e) {return "**JSON ERROR:** Error result: `Couldn't find first id`"}
-					try {var id_sec=new_data.musics[1].id} catch(e) {return "**JSON ERROR:** Error result: `Couldn't find second id`"}
-					try {var id_third=new_data.musics[2].id} catch(e) {return "**JSON ERROR:** Error result: `Couldn't find third id`"}
-					try {var basebeats1=new_data.musics[0].baseBeats} catch(e) {return "**JSON ERROR:** Error result: `Couldn't find first baseBeats`"}
-					try {var basebeats2=new_data.musics[1].baseBeats} catch(e) {return "**JSON ERROR:** Error result: `Couldn't find second baseBeats`"}
-					try {var basebeats3=new_data.musics[2].baseBeats} catch(e) {return "**JSON ERROR:** Error result: `Couldn't find third baseBeats`"}
+					try {var new_data=JSON.parse(data)} catch(e) {return ":x: Unexpected end of JSON file!"};
+					try {var id_first=new_data.musics[0].id} catch(e) {return ":x: Couldn't find first id!"}
+					try {var id_sec=new_data.musics[1].id} catch(e) {return ":x: Couldn't find second id!"}
+					try {var id_third=new_data.musics[2].id} catch(e) {return ":x: Couldn't find third id!"}
+					try {var basebeats1=new_data.musics[0].baseBeats} catch(e) {return ":x: Couldn't find first baseBeats!"}
+					try {var basebeats2=new_data.musics[1].baseBeats} catch(e) {return ":x: Couldn't find second baseBeats!"}
+					try {var basebeats3=new_data.musics[2].baseBeats} catch(e) {return ":x: Couldn't find third baseBeats!"}
 					try {var bpm1=new_data.musics[0].bpm} catch(e) {if (bpm1==="") return ":x: Couldn't find first bpm. Please put them in command! e.g. `pt2ci 100 101 102`"}
 					try {var bpm2=new_data.musics[1].bpm} catch(e) {if (bpm2==="") return ":x: Couldn't find second bpm. Please put them in command! e.g. `pt2ci 100 101 102`"}
 					try {var bpm3=new_data.musics[2].bpm} catch(e) {if (bpm3==="") return ":x: Couldn't find third bpm. Please put them in command! e.g. `pt2ci 100 101 102`"}
-					try {var id1=new_data.musics[0].scores} catch(e) {return "**JSON ERROR:** Error result: `Couldn't find first scores`"}
-					try {var id2=new_data.musics[1].scores} catch(e) {return "**JSON ERROR:** Error result: `Couldn't find second scores`"}
-					try {var id3=new_data.musics[2].scores} catch(e) {return "**JSON ERROR:** Error result: `Couldn't find third scores`"}
+					try {var id1=new_data.musics[0].scores} catch(e) {return ":x: Couldn't find first scores!"}
+					try {var id2=new_data.musics[1].scores} catch(e) {return ":x: Couldn't find second scores!"}
+					try {var id3=new_data.musics[2].scores} catch(e) {return ":x: Couldn't find third scores!"}
 					if (!bpm1) {bpm1=nbpm1} if (!bpm2) {bpm2=nbpm2} if (!bpm3) {bpm3=nbpm3}
 					if (bpm1===""||parseFloat(bpm1)<=0) return ":x: Couldn't find first bpm or lower by 0. Please put them in command! e.g. `pt2ci 100 101 102`"
 					if (bpm2===""||parseFloat(bpm2)<=0) return ":x: Couldn't find second bpm or lower by 0. Please put them in command! e.g. `pt2ci 100 101 102`"
 					if (bpm3===""||parseFloat(bpm3)<=0) return ":x: Couldn't find third bpm or lower by 0. Please put them in command! e.g. `pt2ci 100 101 102`"
-					if (!id_first) return "**JSON ERROR:** Error result: `Couldn't find first id`"
-					if (!id_sec) return "**JSON ERROR:** Error result: `Couldn't find second id`"
-					if (!id_third) return "**JSON ERROR:** Error result: `Couldn't find third id`"
-					if (!basebeats1) return "**JSON ERROR:** Error result: `Couldn't find first baseBeats`"
-					if (!basebeats2) return "**JSON ERROR:** Error result: `Couldn't find second baseBeats`"
-					if (!basebeats3) return "**JSON ERROR:** Error result: `Couldn't find third baseBeats`"
+					if (!id_first) return ":x: Couldn't find first id!"
+					if (!id_sec) return ":x: Couldn't find second id!"
+					if (!id_third) return ":x: Couldn't find third id!"
+					if (!basebeats1) return ":x: Couldn't find first baseBeats!"
+					if (!basebeats2) return ":x: Couldn't find second baseBeats!"
+					if (!basebeats3) return ":x: Couldn't find third baseBeats!"
 					var multiplying1=0.03125/basebeats1;
 					var multiplying2=0.03125/basebeats2;
 					var multiplying3=0.03125/basebeats3;
@@ -115,7 +114,7 @@ client.on('message', async message => {
 						var first_length=(id1_path_bg1[0]*multiplying1).toFixed(3);
 						var path_background=(id1_path_bg1[i]*multiplying1).toFixed(3);
 						j=i+1;
-						if (path_background!=first_length) {delay=`**DELAY ERROR:** id: ${id_first}, Path 1: ${parseFloat(first_length)}, Path ${j}: ${parseFloat(path_background)}`}
+						if (path_background!=first_length) {delay=`**ID ${id_first};** path 1: **${parseFloat(first_length)}**, path ${j}: **${parseFloat(path_background)}**`}
 					}
 					for (i=0; i<id2.length; i++) {
 						var a2=id2[i].replace(stuff_remove, "").replace(/Q/g, "RR").replace(/R/g, "SS").replace(/S/g, "TT").replace(/T/g, "UU").replace(/U/g, "VV").replace(/V/g, "WW").replace(/W/g, "XX").replace(/X/g, "YY").replace(/Y/g, "P").replace(/H/g, "II").replace(/I/g, "JJ").replace(/J/g, "KK").replace(/K/g, "LL").replace(/L/g, "MM").replace(/M/g, "NN").replace(/N/g, "OO").replace(/O/g, "PP");
@@ -125,7 +124,7 @@ client.on('message', async message => {
 						var first_length=(id2_path_bg1[0]*multiplying2).toFixed(3);
 						var path_background=(id2_path_bg1[i]*multiplying2).toFixed(3);
 						j=i+1;
-						if (path_background!=first_length) {delay=`**DELAY ERROR:** id: ${id_second}, Path 1: ${parseFloat(first_length)}, Path ${j}: ${parseFloat(path_background)}`}
+						if (path_background!=first_length) {delay=`**ID ${id_sec};** path 1: **${parseFloat(first_length)}**, path ${j}: **${parseFloat(path_background)}**`}
 					}
 					for (i=0; i<id3.length; i++) {
 						var a3=id3[i].replace(stuff_remove, "").replace(/Q/g, "RR").replace(/R/g, "SS").replace(/S/g, "TT").replace(/T/g, "UU").replace(/U/g, "VV").replace(/V/g, "WW").replace(/W/g, "XX").replace(/X/g, "YY").replace(/Y/g, "P").replace(/H/g, "II").replace(/I/g, "JJ").replace(/J/g, "KK").replace(/K/g, "LL").replace(/L/g, "MM").replace(/M/g, "NN").replace(/N/g, "OO").replace(/O/g, "PP");
@@ -135,7 +134,7 @@ client.on('message', async message => {
 						var first_length=(id3_path_bg1[0]*multiplying3).toFixed(3);
 						var path_background=(id3_path_bg1[i]*multiplying3).toFixed(3);
 						j=i+1;
-						if (path_background!=first_length) {delay=`**DELAY ERROR:** id: ${id_third}, Path 1: ${parseFloat(first_length)}, Path ${j}: ${parseFloat(path_background)}`}
+						if (path_background!=first_length) {delay=`**ID ${id_third};** path 1: **${parseFloat(first_length)}**, path ${j}: **${parseFloat(path_background)}**`}
 					}
 					var to_check_errors1=first_path_id1+id1_err;
 					var to_check_errors2=first_path_id2+id2_err;
@@ -667,8 +666,8 @@ client.on('message', async message => {
 					slide2_amount=(full_lap.match(/8\x3c/g)||[]).length;
 					slide_amount=slide1_amount+slide2_amount;
 					burst_amount=(full_lap.match(/10\x3c/g)||[]).length;
-					var tiles_info = `Double tiles: ${doubles_amount}\nCombo tiles: ${combo_amount}\nSlide tiles: ${slide_amount}\nBurst tiles: ${burst_amount}`;
-					if (basebeats1 <= 0||basebeats2 <= 0||basebeats3 <= 0) return ":x: baseBeats can't be lower or equal to 0!";
+					var tiles_info = `Double tiles: **${doubles_amount}**\nCombo tiles: **${combo_amount}**\nSlide tiles: **${slide_amount}**\nBurst tiles: **${burst_amount}**`;
+					if (basebeats1<=0||basebeats2<=0||basebeats3<=0) return ":x: baseBeats can't be lower or equal to 0!";
 					const speed1=parseFloat(bpm1/basebeats1/60); const speed2=parseFloat(bpm2/basebeats2/60); const speed3=parseFloat(bpm3/basebeats3/60);
 					var speed_info = `${speed1.toFixed(3)}, ${speed2.toFixed(3)}, ${speed3.toFixed(3)}`;
 					star1=star1.replace(stuff_remove, "").replace(/Q/g, "RR").replace(/R/g, "SS").replace(/S/g, "TT").replace(/T/g, "UU").replace(/U/g, "VV").replace(/V/g, "WW").replace(/W/g, "XX").replace(/X/g, "YY").replace(/Y/g, "P").replace(/H/g, "II").replace(/I/g, "JJ").replace(/J/g, "KK").replace(/K/g, "LL").replace(/L/g, "MM").replace(/M/g, "NN").replace(/N/g, "OO").replace(/O/g, "PP");
@@ -683,7 +682,7 @@ client.on('message', async message => {
 					if (star3==="") {star3_final=0} else {star3_final=star3.match(/P/gi).length}
 					r3=(1*star3_final*multiplying3);
 					if (!Number.isInteger(r3)) {r3=(1*r3).toFixed(3)}
-					if (isNaN(r1)||isNaN(r2)||isNaN(r3)) return ":x: Unknown error.";
+					if (isNaN(r1)||isNaN(r2)||isNaN(r3)) return ":x: Unknown error!";
 					s1_duration=r1/speed1; s2_duration=r2/speed2; s3_duration=r3/speed3;
 					duration_main=s1_duration+s2_duration+s3_duration;
 					hrs=~~(duration_main/3600);
@@ -703,13 +702,14 @@ client.on('message', async message => {
 				}
 				var tt = info(data, bpm1, bpm2, bpm3);
 				if (Array.isArray(tt)==true) {
-					if (tt[0]==="*no delay*") {var color="#00ff00"} else {var color="#ffff00"}
+					if (tt[0]==="*no delay*") {var color="#00ff00"} else {var color="#ff8800"}
 					var serverembed = new Discord.RichEmbed()
 					.setColor(color)
 					.setTitle("Info checker")
 					.addField("Duration", tt[3])
 					.addField("Points per round", tt[4])
 					.addField("Speeds", tt[2])
+					.addField("Tiles info", tt[1])
 					.addField("Delay", tt[0])
 					return message.channel.send(serverembed);
 				} else {

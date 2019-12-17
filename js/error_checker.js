@@ -182,10 +182,10 @@ module.exports = {
 	for (i=0; i<special_tiles.length; i++) {
 		if (special_tiles[i].includes("<")||special_tiles[i].includes(">")) {result=special_tiles[i]}
 	}
-	if (result1.length>0) return `**CODE ERROR:** Tile shorter than 1 in first path (${result1})`;
-	if (result.length>0) return `**CODE ERROR:** Error result: ${result}`;
-	if (result_tile.length>0) return `**CODE ERROR:** Error result: ${result_tile}`;
-	if (result_tile1.length>0) return `**CODE ERROR:** Error result: ${result_tile1}`;
+	if (result1.length>0) return ":x: Tile shorter than 1 in first path (`"+result1+"`)";
+	if (result.length>0) return ":x: Error result: `"+result+"`";
+	if (result_tile.length>0) return ":x: Error result: `"+result_tile+"`";
+	if (result_tile1.length>0) return ":x: Error result: `"+result_tile1+"`";
 	return "NO ERRORS!";
   }
 }
