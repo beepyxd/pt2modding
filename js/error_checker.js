@@ -38,7 +38,7 @@ module.exports = {
 		else if (a2==-1&&paths[i].includes("[")) {result=paths[i]}
 		else if (paths[i].includes(")]")) {result=paths[i]}
 		else if (a3!=a4&&a3>-1&&a4>-1) {result=paths[i]}
-		else if (a4==-1) {result=paths[i]}
+		else if (a4<=-1) {result=paths[i]}
 		else if (a_match.match(/\x28/g).length>1||a_match.match(/\x29/g).length>1||a_match.match(/\x5b/g).length>1||a_match.match(/\x5d/g).length>1) {result=paths[i]}
 		else {
 			a5=paths[i].indexOf("{"); a6=paths[i].indexOf("}"); a6=a6-2;
