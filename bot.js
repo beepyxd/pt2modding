@@ -88,7 +88,7 @@ client.on('message', async message => {
 					try {var id1=new_data.musics[0].scores} catch(e) {return "**JSON ERROR:** Error result: `Couldn't find first scores`"}
 					try {var id2=new_data.musics[1].scores} catch(e) {return "**JSON ERROR:** Error result: `Couldn't find second scores`"}
 					try {var id3=new_data.musics[2].scores} catch(e) {return "**JSON ERROR:** Error result: `Couldn't find third scores`"}
-					if (!bpm1=) return ":x: Couldn't find first bpm. Please put them in command! e.g. `pt2ci 100 101 102`"
+					if (!bpm1) return ":x: Couldn't find first bpm. Please put them in command! e.g. `pt2ci 100 101 102`"
 					if (!bpm2) return ":x: Couldn't find second bpm. Please put them in command! e.g. `pt2ci 100 101 102`"
 					if (!bpm3) return ":x: Couldn't find third bpm. Please put them in command! e.g. `pt2ci 100 101 102`"
 					if (!id_first) return "**JSON ERROR:** Error result: `Couldn't find first id`"
