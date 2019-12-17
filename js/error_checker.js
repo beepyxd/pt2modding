@@ -2,7 +2,8 @@ function containsNonLatinCodepoints(s) {return /[^\u0000-\u00ff]/.test(s)}
 function spaces(s) {return /[^\u0051-\u0059]/.test(s)}
 function tiles(s) {return /[^\u0048-\u0050]/.test(s)}
 
-function check_errors(path1, paths, multiplying) {
+module.exports = {
+  check: function check_errors(path1, paths, multiplying) {
 	path1=path1.replace(/(?:\x2c\x3b|\x2c|\x3b)/g, ','); paths=paths.replace(/(?:\x2c\x3b|\x2c|\x3b)/g, ',');
 	paths=paths.split(",");
 	result="";
@@ -191,4 +192,5 @@ function check_errors(path1, paths, multiplying) {
 	} else {
 		return "NO ERRORS!";
 	}
+  }
 }
