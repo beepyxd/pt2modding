@@ -90,9 +90,9 @@ client.on('message', async message => {
 					try {var id2=new_data.musics[1].scores} catch(e) {return "**JSON ERROR:** Error result: `Couldn't find second scores`"}
 					try {var id3=new_data.musics[2].scores} catch(e) {return "**JSON ERROR:** Error result: `Couldn't find third scores`"}
 					if (!bpm1) {bpm1=nbpm1} if (!bpm2) {bpm2=nbpm2} if (!bpm3) {bpm3=nbpm3}
-					if (bpm1==="") return ":x: Couldn't find first bpm. Please put them in command! e.g. `pt2ci 100 101 102`"
-					if (bpm2==="") return ":x: Couldn't find second bpm. Please put them in command! e.g. `pt2ci 100 101 102`"
-					if (bpm3==="") return ":x: Couldn't find third bpm. Please put them in command! e.g. `pt2ci 100 101 102`"
+					if (bpm1===""||parseFloat(bpm)<=0) return ":x: Couldn't find first bpm or lower by 0. Please put them in command! e.g. `pt2ci 100 101 102`"
+					if (bpm2===""||parseFloat(bpm)<=0) return ":x: Couldn't find second bpm or lower by 0. Please put them in command! e.g. `pt2ci 100 101 102`"
+					if (bpm3===""||parseFloat(bpm)<=0) return ":x: Couldn't find third bpm or lower by 0. Please put them in command! e.g. `pt2ci 100 101 102`"
 					if (!id_first) return "**JSON ERROR:** Error result: `Couldn't find first id`"
 					if (!id_sec) return "**JSON ERROR:** Error result: `Couldn't find second id`"
 					if (!id_third) return "**JSON ERROR:** Error result: `Couldn't find third id`"
@@ -102,6 +102,21 @@ client.on('message', async message => {
 					multiplying1=0.03125/basebeats1;
 					multiplying2=0.03125/basebeats2;
 					multiplying3=0.03125/basebeats3;
+					for (i=0; i<id1.length; i++) {
+						if (id1[i].length-1 !== ","||id1[i].length-1!==";") {
+							id1[i]=`${id1[i]},`;
+						}
+					}
+					for (i=0; i<id2.length; i++) {
+						if (id2[i].length-1 !== ","||id2[i].length-1!==";") {
+							id2[i]=`${id2[i]},`;
+						}
+					}
+					for (i=0; i<id3.length; i++) {
+						if (id3[i].length-1 !== ","||id3[i].length-1!==";") {
+							id3[i]=`${id3[i]},`;
+						}
+					}
 					first_path_id1=id1[0]; id1_err=id1.join();
 					first_path_id2=id2[0]; id2_err=id2.join();
 					first_path_id3=id3[0]; id3_err=id3.join();
