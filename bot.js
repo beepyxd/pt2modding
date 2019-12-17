@@ -65,6 +65,7 @@ client.on('message', async message => {
 			return message.reply(":x: Put JSON file!");
 		}
 		fs.readFile(the_url, function (err, data) {
+			console.log(data);
 			if (!!args[0]) {var bpm1 = parseFloat(args[0])} else {var bpm1=""}
 			if (!!args[1]) {var bpm2 = parseFloat(args[1])} else {var bpm2=""}
 			if (!!args[2]) {var bpm3 = parseFloat(args[2])} else {var bpm3=""}
