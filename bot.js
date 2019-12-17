@@ -90,9 +90,9 @@ client.on('message', async message => {
 					try {var id2=new_data.musics[1].scores} catch(e) {return "**JSON ERROR:** Error result: `Couldn't find second scores`"}
 					try {var id3=new_data.musics[2].scores} catch(e) {return "**JSON ERROR:** Error result: `Couldn't find third scores`"}
 					if (!bpm1) {bpm1=nbpm1} if (!bpm2) {bpm2=nbpm2} if (!bpm3) {bpm3=nbpm3}
-					if (bpm1===""||parseFloat(bpm)<=0) return ":x: Couldn't find first bpm or lower by 0. Please put them in command! e.g. `pt2ci 100 101 102`"
-					if (bpm2===""||parseFloat(bpm)<=0) return ":x: Couldn't find second bpm or lower by 0. Please put them in command! e.g. `pt2ci 100 101 102`"
-					if (bpm3===""||parseFloat(bpm)<=0) return ":x: Couldn't find third bpm or lower by 0. Please put them in command! e.g. `pt2ci 100 101 102`"
+					if (bpm1===""||parseFloat(bpm1)<=0) return ":x: Couldn't find first bpm or lower by 0. Please put them in command! e.g. `pt2ci 100 101 102`"
+					if (bpm2===""||parseFloat(bpm2)<=0) return ":x: Couldn't find second bpm or lower by 0. Please put them in command! e.g. `pt2ci 100 101 102`"
+					if (bpm3===""||parseFloat(bpm3)<=0) return ":x: Couldn't find third bpm or lower by 0. Please put them in command! e.g. `pt2ci 100 101 102`"
 					if (!id_first) return "**JSON ERROR:** Error result: `Couldn't find first id`"
 					if (!id_sec) return "**JSON ERROR:** Error result: `Couldn't find second id`"
 					if (!id_third) return "**JSON ERROR:** Error result: `Couldn't find third id`"
