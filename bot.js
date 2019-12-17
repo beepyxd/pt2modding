@@ -152,7 +152,7 @@ client.on('message', async message => {
 						path_special="hk<>,hk<>";
 						result=`<${result}`;
 					}
-					special_tiles=[].split(",");
+					special_tiles=[];
 					for (i=0; i<path_special.length; i++) {
 						j=i+1;
 						if (path_special[i].includes("<")&&!path_special[i].includes(">")) {
