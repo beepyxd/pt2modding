@@ -723,7 +723,7 @@ client.on('message', async message => {
 					}
 					return message.channel.send(serverembed);
 				} else {
-					message.reply(tt);
+					message.reply(tt).catch(()=>{message.reply(":x: You have too many errors, limit of message is 2000 chars!")});
 				}
 			});
 		});
