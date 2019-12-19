@@ -28,9 +28,8 @@ module.exports = {
 		if (a4_match==null) {a4_match="["}
 		a_match=a1_match+a2_match+a3_match+a4_match; a4=a4-1;
 		if (paths[i].indexOf("(")>0) {result.push(paths[i])}
-		else if (paths[i].includes("\"")||paths[i].includes("\'")||paths[i].includes("*")||paths[i].includes("?")||paths[i].includes("|")||paths[i].includes("+")||paths[i].includes("_")||paths[i].includes("=")||paths[i].includes(":")||paths[i].includes("`")||paths[i].includes("\\")||paths[i].includes("Z")||paths[i].includes("z")) {result.push(paths[i])}
+		else if (paths[i].includes("\"")||paths[i].includes("\'")||paths[i].includes("*")||paths[i].includes("?")||paths[i].includes("|")||paths[i].includes("+")||paths[i].includes("_")||paths[i].includes("=")||paths[i].includes(":")||paths[i].includes("`")||paths[i].includes("\\")||paths[i].includes("Z")||paths[i].includes("z")||paths[i].includes("Q[")||paths[i].includes("R[")||paths[i].includes("S[")||paths[i].includes("T[")||paths[i].includes("U[")||paths[i].includes("V[")||paths[i].includes("W[")||paths[i].includes("X[")||paths[i].includes("Y[")) {result.push(paths[i])}
 		else if (paths[i].includes("\r")||paths[i].includes("\n")) {result.push("used enter")}
-		else if (paths[i].includes("Q[")||paths[i].includes("R[")||paths[i].includes("S[")||paths[i].includes("T[")||paths[i].includes("U[")||paths[i].includes("V[")||paths[i].includes("W[")||paths[i].includes("X[")||paths[i].includes("Y[")) {result.push(paths[i])}
 		else if (containsNonLatinCodepoints(paths[i])==true) {result.push(paths[i])}
 		else if (a1==0&&!paths[i].includes(")[")) {result.push(paths[i])}
 		else if (a1==-1&&paths[i].includes(")[")) {result.push(paths[i])}
@@ -176,9 +175,15 @@ module.exports = {
 		}
 	}
 	for (i=0; i<special_tiles.length; i++) {
-		if (special_tiles[i].includes("<")||special_tiles[i].includes(">")) {result.push(special_tiles[i])}
+		if (special_tiles[i].includes("<")||special_tiles[i].includes(">")) {result.push(","+special_tiles[i])}
 	}
-	if (result1.length>0) return ":x: Tiles shorter than 1 in "+path_num+" path (`"+result1.join("`, `")+"`)";
+	if (result1.length>0) {
+		if (result.length>0) {
+			return ":x: Tiles shorter than 1 in "+path_num+" path (`"+result1.join("`, `")+"`)\n\nError results: `"+result.join("`, `")+"`";
+		} else {
+			return ":x: Tiles shorter than 1 in "+path_num+" path (`"+result1.join("`, `")+"`)";
+		}
+	}
 	if (result.length>0) return ":x: Error results: `"+result.join("`, `")+"`";
 	return "NO ERRORS!";
   }
