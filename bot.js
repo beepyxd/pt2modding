@@ -55,17 +55,17 @@ client.on('message', async message => {
 		var serverembed = new Discord.RichEmbed()
 		.setColor("#00ffff")
 		.setTitle("All commands")
-		.setDescription("• `pt2ping` - Bot's ping\n• `pt2say` - Bot send your message")
+		.setDescription("• `pt2ping` - Bot's ping\n• `pt2say` - Bot send your message\n• `pt2ci + JSON FILE` - Info checker")
 		return message.channel.send(serverembed);
 	} else if (commandfile==="ci") {
 		if (message.channel.type!=="dm") {if (message.channel.id!=="581184610067808298") return message.react(":whyhere:582157451848187904")}
 		try {
-			var Attachment = message.attachments.first();
+			var Attachment = message.attachments.first().url;
 		} catch(e) {
 			return message.reply(":x: Put JSON file!");
 		}
 		const file = fs.createWriteStream("a.json");
-		https.get(Attachment.url, response => {
+		https.get(Attachment, response => {
 			const stream = response.pipe(file);
 			stream.on("finish", async () => {
 				var data = fs.readFileSync(file.path, 'utf8');
