@@ -52,9 +52,8 @@ module.exports = {
 			if (effects==="{7}") {effects="{1}"; paths[i]=paths[i].substr(0, a5)+paths[i].substr(a6+3, paths[i].length)}
 			if (effects==="{8}") {effects="{1}"; paths[i]=paths[i].substr(0, a5)+paths[i].substr(a6+3, paths[i].length)}
 			if (effects==="{9}") {effects="{1}"; paths[i]=paths[i].substr(0, a5)+paths[i].substr(a6+3, paths[i].length)}
-			if (effects!=="{1}") {
-				result.push(paths[i]);
-			} else {
+			if (effects!=="{1}") {result.push(paths[i])}
+			else {
 				if (paths[i].indexOf("(")!=0&&paths[i].includes(".")) {result.push(paths[i])}
 				else if (paths[i].indexOf("(")!=0&&paths[i].includes("~")) {result.push(paths[i])}
 				else if (paths[i].indexOf("(")!=0&&paths[i].includes("!")) {result.push(paths[i])}
@@ -89,22 +88,26 @@ module.exports = {
 							else if (paths[i].includes("%")&&paths[i].includes("^")) {result.push(paths[i])}
 							else if (paths[i].includes("%")&&paths[i].includes("&")) {result.push(paths[i])}
 							else if (paths[i].includes("^")&&paths[i].includes("&")) {result.push(paths[i])}
+							else {
+								if (spaces(paths[i])==false) {paths[i]="a[M]"}
+								var tiles_start=paths[i].indexOf("[");
+								tiles_start=tiles_start+1;
+								var tiles_length=paths[i].substr(tiles_start, paths[i].length);
+								tiles_length=tiles_length.substr(0, tiles_length.length-1);
+								if (tiles(tiles_length)==true) {result.push(paths[i])}
+								else {
+									var paths1=paths[i].substr(0, tiles_start-1);
+									if (paths1.substr(paths1.length-1, paths1.length)===")") {paths1=paths1.substr(0, paths1.length-1)}
+									if (paths1.indexOf("(")==0) {paths1=paths1.substr(1, paths1.length)}
+									var paths_no_arp=paths1.replace(/\x21|\x24|\x25|\x26|\x2e|\x40|\x5e|\x7e/g, ',').split(",");
+									var correct_notes = ["A-3", "#A-3", "B-3", "C-2", "#C-2", "D-2", "#D-2", "E-2", "F-2", "#F-2", "G-2", "#G-2", "A-2", "#A-2", "B-2", "C-1", "#C-1", "D-1", "#D-1", "E-1", "F-1", "#F-1", "G-1", "#G-1", "A-1", "#A-1", "B-1", "c", "#c", "d", "#d", "e", "f", "#f", "g", "#g", "a", "#a", "b", "c1", "#c1", "d1", "#d1", "e1", "f1", "#f1", "g1", "#g1", "a1", "#a1", "b1", "c2", "#c2", "d2", "#d2", "e2", "f2", "#f2", "g2", "#g2", "a2", "#a2", "b2", "c3", "#c3", "d3", "#d3", "e3", "f3", "#f3", "g3", "#g3", "a3", "#a3", "b3", "c4", "#c4", "d4", "#d4", "e4", "f4", "#f4", "g4", "#g4", "a4", "#a4", "b4", "c5", "mute", "empty"];
+									for (j=0; j<paths_no_arp.length; j++) {
+										if (spaces(paths_no_arp[j])==true) {if (correct_notes.indexOf(paths_no_arp[j])==-1) {result.push(paths[i]); break;}}
+									}
+								}
+							}
 						}
 					}
-				}
-				if (spaces(paths[i])==false) {paths[i]="a[M]"}
-				var tiles_start=paths[i].indexOf("[");
-				tiles_start=tiles_start+1;
-				var tiles_length=paths[i].substr(tiles_start, paths[i].length);
-				tiles_length=tiles_length.substr(0, tiles_length.length-1);
-				if (tiles(tiles_length)==true) {result.push(paths[i])}
-				var paths1=paths[i].substr(0, tiles_start-1);
-				if (paths1.substr(paths1.length-1, paths1.length)===")") {paths1=paths1.substr(0, paths1.length-1)}
-				if (paths1.indexOf("(")==0) {paths1=paths1.substr(1, paths1.length)}
-				var paths_no_arp=paths1.replace(/\x21|\x24|\x25|\x26|\x2e|\x40|\x5e|\x7e/g, ',').split(",");
-				var correct_notes = ["A-3", "#A-3", "B-3", "C-2", "#C-2", "D-2", "#D-2", "E-2", "F-2", "#F-2", "G-2", "#G-2", "A-2", "#A-2", "B-2", "C-1", "#C-1", "D-1", "#D-1", "E-1", "F-1", "#F-1", "G-1", "#G-1", "A-1", "#A-1", "B-1", "c", "#c", "d", "#d", "e", "f", "#f", "g", "#g", "a", "#a", "b", "c1", "#c1", "d1", "#d1", "e1", "f1", "#f1", "g1", "#g1", "a1", "#a1", "b1", "c2", "#c2", "d2", "#d2", "e2", "f2", "#f2", "g2", "#g2", "a2", "#a2", "b2", "c3", "#c3", "d3", "#d3", "e3", "f3", "#f3", "g3", "#g3", "a3", "#a3", "b3", "c4", "#c4", "d4", "#d4", "e4", "f4", "#f4", "g4", "#g4", "a4", "#a4", "b4", "c5", "mute", "empty"];
-				for (j=0; j<paths_no_arp.length; j++) {
-					if (spaces(paths_no_arp[j])==true) {if (correct_notes.indexOf(paths_no_arp[j])==-1) {result.push(paths[i]); break;}}
 				}
 			}
 		}
