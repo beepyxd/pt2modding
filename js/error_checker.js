@@ -8,7 +8,7 @@ module.exports = {
 	paths=paths.split(",");
 	result=[];
 	lastEl=paths.pop();
-	if (lastEl!=="") {result.push(lastEl)}
+	//if (lastEl!=="") {result.push(lastEl)}
 	for (i=0; i<paths.length; i++) {
 		if (paths[i].includes("2<>")||paths[i].includes("3<>")||paths[i].includes("5<>")||paths[i].includes("6<>")||paths[i].includes("7<>")||paths[i].includes("8<>")||paths[i].includes("9<>")||paths[i].includes("10<>")) {result.push(paths[i])}
 	}
