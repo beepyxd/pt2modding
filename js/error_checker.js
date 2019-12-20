@@ -179,12 +179,12 @@ module.exports = {
 	}
 	if (result1.length>0) {
 		if (result.length>0) {
-			return ":x: Tiles shorter than 1 in "+path_num+" path (`"+result1.join("`, `")+"`)\n\nError results: `"+result.join("`, `")+"`";
+			return [":x: Tiles shorter than 1 in "+path_num+" path (`"+result1.join("`, `")+"`)", "Error results: `"+result.join("`, `")+"`"];
 		} else {
-			return ":x: Tiles shorter than 1 in "+path_num+" path (`"+result1.join("`, `")+"`)";
+			return [":x: Tiles shorter than 1 in "+path_num+" path (`"+result1.join("`, `")+"`)", "NO ERRORS!"];
 		}
 	}
-	if (result.length>0) return ":x: Error results: `"+result.join("`, `")+"`";
-	return "NO ERRORS!";
+	if (result.length>0) return ["NO ERRORS!", ":x: Error results: `"+result.join("`, `")+"`"];
+	return ["NO ERRORS!", "NO ERRORS!"];
   }
 }

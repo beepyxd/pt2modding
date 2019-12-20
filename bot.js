@@ -146,9 +146,15 @@ client.on('message', async message => {
 					var res1=errors.check(first_path_id1, to_check_errors1, multiplying1, "first");
 					var res2=errors.check(first_path_id2, to_check_errors2, multiplying2, "second");
 					var res3=errors.check(first_path_id3, to_check_errors3, multiplying3, "third");
-					if (res1!=="NO ERRORS!") return res1;
-					if (res2!=="NO ERRORS!") return res2;
-					if (res3!=="NO ERRORS!") return res3;
+					if (res1[0]!=="NO ERRORS!"&&res1[1]!=="NO ERRORS!") return res1.join("\n\n");
+					if (res1[0]!=="NO ERRORS!") return res1[0];
+					if (res1[1]!=="NO ERRORS!") return res1[1];
+					if (res2[0]!=="NO ERRORS!"&&res2[1]!=="NO ERRORS!") return res2.join("\n\n");
+					if (res2[0]!=="NO ERRORS!") return res2[0];
+					if (res2[1]!=="NO ERRORS!") return res2[1];
+					if (res3[0]!=="NO ERRORS!"&&res3[1]!=="NO ERRORS!") return res3.join("\n\n");
+					if (res3[0]!=="NO ERRORS!") return res3[0];
+					if (res3[1]!=="NO ERRORS!") return res3[1];
 					var path_special=first_path_id1+first_path_id2+first_path_id3;
 					path_special=path_special.replace(/\x3b/g, ",").replace(/\x2c\x2c/g, ",").replace(/2\x3c/g, "hh<").replace(/3\x3c/g, "hi<").replace(/5\x3c/g, "hj<").replace(/6\x3c/g, "hk<").replace(/7\x3c/g, "hk<").replace(/8\x3c/g, "hk<").replace(/9\x3c/g, "hk<").replace(/10\x3c/g, "hh<").replace(/mute|empty|A|B|C|D|E|F|G|a|b|c|d|e|f|g|0|1|2|3|4|5|6|7|8|9|\x21|\x23|\x24|\x25|\x26|\x28|\x29|\x40|\x2d|\x2e|\x5b|\x5d|\x5e|\x7b|\x7c|\x7d|\x7e/g, "").replace(/P/g, tile.repeat(1)).replace(/O/g, tile.repeat(2)).replace(/N/g, tile.repeat(4)).replace(/M/g, tile.repeat(8)).replace(/L/g, tile.repeat(16)).replace(/K/g, tile.repeat(32)).replace(/J/g, tile.repeat(64)).replace(/I/g, tile.repeat(128)).replace(/H/g, tile.repeat(256)).replace(/Y/g, space.repeat(1)).replace(/X/g, space.repeat(2)).replace(/W/g, space.repeat(4)).replace(/V/g, space.repeat(8)).replace(/U/g, space.repeat(16)).replace(/T/g, space.repeat(32)).replace(/S/g, space.repeat(64)).replace(/R/g, space.repeat(128)).replace(/Q/g, space.repeat(256));
 					var b1=path_special.match(/\x3c/g);
@@ -743,7 +749,7 @@ client.on('message', async message => {
 			stream.on("finish", async () => {
 				var data = fs.readFileSync(file.path, 'utf8');
 				var res=errors.check(data, data, 1, "first");
-				if (res!=="NO ERRORS!") return message.reply(res);
+				if (res[1]!=="NO ERRORS!") return message.reply(res);
 				data = data.replace(/1|2|3|4|5|6|7|8|9|0|\x21|\x23|\x24|\x25|\x26|\x28|\x29|\x40|\x2c|\x2d|\x2e|\x3b|\x3c|\x3e|\x5b|\x5d|\x5e|\x7b|\x7d|\x7e|mute|empty|A|B|C|D|E|F|G|a|b|c|d|e|f|g/g, "").replace(/P|Y/g, "Y".repeat(1)).replace(/O|X/g, "Y".repeat(2)).replace(/N|W/g, "Y".repeat(4)).replace(/M|V/g, "Y".repeat(8)).replace(/L|U/g, "Y".repeat(16)).replace(/K|T/g, "Y".repeat(32)).replace(/J|S/g, "Y".repeat(64)).replace(/I|R/g, "Y".repeat(128)).replace(/H|Q/g, "Y".repeat(256)).replace(/YY/g, "X").replace(/XX/g, "W").replace(/WW/g, "V").replace(/VV/g, "U").replace(/UU/g, "T").replace(/TT/g, "S").replace(/SS/g, "R").replace(/RR/g, "Q")+",";
 				fs.writeFile("/tmp/space.txt", data, function(err) {
 					if (err) return console.log(err);
