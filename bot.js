@@ -55,7 +55,10 @@ client.on('message', async message => {
 		var serverembed = new Discord.RichEmbed()
 		.setColor("#00ffff")
 		.setTitle("All commands")
-		.setDescription("• `pt2ping` - Bot's ping\n• `pt2say` - Bot send your message\n• `pt2ci + JSON FILE` - Info checker")
+		.addField("pt2ci + JSON FILE", "Info checker")
+		.addField("pt2space + TXT FILE", "Convert your path to space")
+		.addField("pt2ping", "Bot's ping")
+		.addField("pt2say", "Bot send your message")
 		return message.channel.send(serverembed);
 	} else if (commandfile==="ci") {
 		if (message.channel.type!=="dm") {if (message.channel.id!=="581184610067808298") return message.react(":whyhere:582157451848187904")}
@@ -727,6 +730,28 @@ client.on('message', async message => {
 				}
 			});
 		});
+	} else if (commandfile==="space") {
+		if (message.channel.type!=="dm") {if (message.channel.id!=="581184610067808298") return message.react(":whyhere:582157451848187904")}
+		try {
+			var Attachment = message.attachments.first().url;
+		} catch(e) {
+			return message.reply(":x: Put TXT file!");
+		}
+		const file = fs.createWriteStream("a.txt");
+		https.get(Attachment, response => {
+			const stream = response.pipe(file);
+			stream.on("finish", async () => {
+				var data = fs.readFileSync(file.path, 'utf8');
+				var res=errors.check(data, data, 1, "first");
+				if (res!=="NO ERRORS!") return message.reply(res);
+				data = data.replace(/1|2|3|4|5|6|7|8|9|0|\x21|\x23|\x24|\x25|\x26|\x28|\x29|\x40|\x2c|\x2d|\x2e|\x3b|\x3c|\x3e|\x5b|\x5d|\x5e|\x7b|\x7d|\x7e|mute|empty|A|B|C|D|E|F|G|a|b|c|d|e|f|g/g, "").replace(/P|Y/g, "Y".repeat(1)).replace(/O|X/g, "Y".repeat(2)).replace(/N|W/g, "Y".repeat(4)).replace(/M|V/g, "Y".repeat(8)).replace(/L|U/g, "Y".repeat(16)).replace(/K|T/g, "Y".repeat(32)).replace(/J|S/g, "Y".repeat(64)).replace(/I|R/g, "Y".repeat(128)).replace(/H|Q/g, "Y".repeat(256)).replace(/YY/g, "X").replace(/XX/g, "W").replace(/WW/g, "V").replace(/VV/g, "U").replace(/UU/g, "T").replace(/TT/g, "S").replace(/SS/g, "R").replace(/RR/g, "Q")+",";
+				fs.writeFile("/tmp/space.txt", data, function(err) {
+					if (err) return console.log(err);
+					console.log("The file was saved!");
+					message.channel.send({files: ['./tmp/space.txt']});
+				}); 
+			})
+		})
 	}
 });
 
