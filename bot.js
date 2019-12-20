@@ -748,8 +748,8 @@ client.on('message', async message => {
 				fs.writeFile("/tmp/space.txt", data, function(err) {
 					if (err) return console.log(err);
 					console.log("The file was saved!");
-					message.channel.send({files: ['./tmp/space.txt']});
-				}); 
+				});
+				message.channel.send({files: ['/tmp/space.txt']});
 			})
 		})
 	}
