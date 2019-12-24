@@ -18,7 +18,7 @@ client.on('ready', async () => {
 	console.log("I'm ready!")
 });
 client.on('message', async message => {
-	if(message.content.indexOf("<@655703534733492235>")!=-1||message.content.indexOf("<@!655703534733492235>")!=-1) {message.react(":thinkping:512223822053769216").catch(()=>{})}
+	if(message.content.indexOf("<@655703534733492235>")!=-1||message.content.indexOf("<@!655703534733492235>")!=-1) {message.react(":choping:659009801136635935").catch(()=>{})}
 	if(message.author.bot) return;
 	var messageArray = message.content.split(" ");
 	if (messageArray.length>0) {var cmd = messageArray[0].toLowerCase()} else {return}
