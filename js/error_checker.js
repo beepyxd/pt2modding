@@ -104,6 +104,7 @@ module.exports = {
 				var paths_no_arp=paths1.replace(/\x21|\x24|\x25|\x26|\x2e|\x40|\x5e|\x7e/g, ',').split(",");
 				var correct_notes = ["A-3", "#A-3", "B-3", "C-2", "#C-2", "D-2", "#D-2", "E-2", "F-2", "#F-2", "G-2", "#G-2", "A-2", "#A-2", "B-2", "C-1", "#C-1", "D-1", "#D-1", "E-1", "F-1", "#F-1", "G-1", "#G-1", "A-1", "#A-1", "B-1", "c", "#c", "d", "#d", "e", "f", "#f", "g", "#g", "a", "#a", "b", "c1", "#c1", "d1", "#d1", "e1", "f1", "#f1", "g1", "#g1", "a1", "#a1", "b1", "c2", "#c2", "d2", "#d2", "e2", "f2", "#f2", "g2", "#g2", "a2", "#a2", "b2", "c3", "#c3", "d3", "#d3", "e3", "f3", "#f3", "g3", "#g3", "a3", "#a3", "b3", "c4", "#c4", "d4", "#d4", "e4", "f4", "#f4", "g4", "#g4", "a4", "#a4", "b4", "c5", "mute", "empty"];
 				for (j=0; j<paths_no_arp.length; j++) {
+					if (paths_no_arp==="") {result.push(paths[i]); break;}
 					if (spaces(paths_no_arp[j])==true) {if (correct_notes.indexOf(paths_no_arp[j])==-1) {result.push(paths[i]); break;}}
 				}
 			}
