@@ -171,6 +171,7 @@ module.exports = {
 	for (i=0; i<special_tiles.length; i++) {
 		if (special_tiles[i].includes("<")||special_tiles[i].includes(">")) {result.push(","+special_tiles[i])}
 	}
+	console.log(result);
 	if (result1.length>0) {
 		if (result.length>0) {
 			return [":x: Tiles shorter than 1 in "+path_num+" path (`"+result1.join("`, `")+"`)", "Error results: `"+result.join("`, `")+"`"];
