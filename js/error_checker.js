@@ -18,6 +18,7 @@ module.exports = {
 		if (a1!=-1) {paths[i]=paths[i].substr(a1+1, paths[i].length)}
 	}
 	for (i=0; i<paths.length; i++) {
+		var alr=false;
 		a1=paths[i].indexOf("("); a1_match=paths[i].match(/\x28/g);
 		if (a1_match==null) {a1_match="("}
 		a2=paths[i].indexOf("]"); a2_match=paths[i].match(/\x5d/g);
@@ -27,21 +28,21 @@ module.exports = {
 		a4=paths[i].indexOf("["); a4_match=paths[i].match(/\x5b/g);
 		if (a4_match==null) {a4_match="["}
 		var a_match=a1_match+a2_match+a3_match+a4_match; a4=a4-1;
-		if (paths[i].indexOf("(")>0) {result.push(paths[i])}
-		else if (paths[i].includes("\"")||paths[i].includes("\'")||paths[i].includes("*")||paths[i].includes("?")||paths[i].includes("|")||paths[i].includes("+")||paths[i].includes("_")||paths[i].includes("=")||paths[i].includes(":")||paths[i].includes("`")||paths[i].includes("\\")||paths[i].includes("Z")||paths[i].includes("z")||paths[i].includes("Q[")||paths[i].includes("R[")||paths[i].includes("S[")||paths[i].includes("T[")||paths[i].includes("U[")||paths[i].includes("V[")||paths[i].includes("W[")||paths[i].includes("X[")||paths[i].includes("Y[")) {result.push(paths[i])}
+		if (paths[i].indexOf("(")>0) {if(alr==false) {result.push(paths[i]); alr=true}}
+		else if (paths[i].includes("\"")||paths[i].includes("\'")||paths[i].includes("*")||paths[i].includes("?")||paths[i].includes("|")||paths[i].includes("+")||paths[i].includes("_")||paths[i].includes("=")||paths[i].includes(":")||paths[i].includes("`")||paths[i].includes("\\")||paths[i].includes("Z")||paths[i].includes("z")||paths[i].includes("Q[")||paths[i].includes("R[")||paths[i].includes("S[")||paths[i].includes("T[")||paths[i].includes("U[")||paths[i].includes("V[")||paths[i].includes("W[")||paths[i].includes("X[")||paths[i].includes("Y[")) {if(alr==false) {result.push(paths[i]); alr=true}}
 		else if (paths[i].includes("\r")||paths[i].includes("\n")) {result.push("used enter")}
-		else if (containsNonLatinCodepoints(paths[i])==true) {result.push(paths[i])}
-		else if (a1==0&&!paths[i].includes(")[")) {result.push(paths[i])}
-		else if (a1==-1&&paths[i].includes(")[")) {result.push(paths[i])}
-		else if (a2==-1&&paths[i].includes("[")) {result.push(paths[i])}
-		else if (paths[i].includes(")]")) {result.push(paths[i])}
-		else if (a3!=a4&&a3>-1&&a4>-1) {result.push(paths[i])}
-		else if (a4==-2&&paths[i].includes("]")) {result.push(paths[i])}
-		else if (a_match.match(/\x28/g).length>1||a_match.match(/\x29/g).length>1||a_match.match(/\x5b/g).length>1||a_match.match(/\x5d/g).length>1) {result.push(paths[i])}
+		else if (containsNonLatinCodepoints(paths[i])==true) {if(alr==false) {result.push(paths[i]); alr=true}}
+		else if (a1==0&&!paths[i].includes(")[")) {if(alr==false) {result.push(paths[i]); alr=true}}
+		else if (a1==-1&&paths[i].includes(")[")) {if(alr==false) {result.push(paths[i]); alr=true}}
+		else if (a2==-1&&paths[i].includes("[")) {if(alr==false) {result.push(paths[i]); alr=true}}
+		else if (paths[i].includes(")]")) {if(alr==false) {result.push(paths[i]); alr=true}}
+		else if (a3!=a4&&a3>-1&&a4>-1) {if(alr==false) {result.push(paths[i]); alr=true}}
+		else if (a4==-2&&paths[i].includes("]")) {if(alr==false) {result.push(paths[i]); alr=true}}
+		else if (a_match.match(/\x28/g).length>1||a_match.match(/\x29/g).length>1||a_match.match(/\x5b/g).length>1||a_match.match(/\x5d/g).length>1) {if(alr==false) {result.push(paths[i]); alr=true}}
 		else {
 			var a5=paths[i].indexOf("{"); var a6=paths[i].indexOf("}"); a6=a6-2;
 			var effects=paths[i].substr(a5, a6+2);
-			if (a5!=a6&&a5>-1&&a6>-1) {result.push(paths[i])}
+			if (a5!=a6&&a5>-1&&a6>-1) {if(alr==false) {result.push(paths[i]); alr=true}}
 			if (a5==-1&&a6==-3) {effects="{1}"}
 			if (effects==="{1}") {paths[i]=paths[i].substr(0, a5)+paths[i].substr(a6+3, paths[i].length)}
 			if (effects==="{2}") {effects="{1}"; paths[i]=paths[i].substr(0, a5)+paths[i].substr(a6+3, paths[i].length)}
@@ -52,43 +53,42 @@ module.exports = {
 			if (effects==="{7}") {effects="{1}"; paths[i]=paths[i].substr(0, a5)+paths[i].substr(a6+3, paths[i].length)}
 			if (effects==="{8}") {effects="{1}"; paths[i]=paths[i].substr(0, a5)+paths[i].substr(a6+3, paths[i].length)}
 			if (effects==="{9}") {effects="{1}"; paths[i]=paths[i].substr(0, a5)+paths[i].substr(a6+3, paths[i].length)}
-			if (effects!=="{1}") {
-				result.push(paths[i]);
-			} else {
-				if (paths[i].indexOf("(")!=0&&paths[i].includes(".")) {result.push(paths[i])}
-				else if (paths[i].indexOf("(")!=0&&paths[i].includes("~")) {result.push(paths[i])}
-				else if (paths[i].indexOf("(")!=0&&paths[i].includes("!")) {result.push(paths[i])}
-				else if (paths[i].indexOf("(")!=0&&paths[i].includes("@")) {result.push(paths[i])}
-				else if (paths[i].indexOf("(")!=0&&paths[i].includes("$")) {result.push(paths[i])}
-				else if (paths[i].indexOf("(")!=0&&paths[i].includes("%")) {result.push(paths[i])}
-				else if (paths[i].indexOf("(")!=0&&paths[i].includes("^")) {result.push(paths[i])}
-				else if (paths[i].indexOf("(")!=0&&paths[i].includes("&")) {result.push(paths[i])}
+			if (effects!=="{1}") {if(alr==false) {result.push(paths[i]); alr=true}}
+			else {
+				if (paths[i].indexOf("(")!=0&&paths[i].includes(".")) {if(alr==false) {result.push(paths[i]); alr=true}}
+				else if (paths[i].indexOf("(")!=0&&paths[i].includes("~")) {if(alr==false) {result.push(paths[i]); alr=true}}
+				else if (paths[i].indexOf("(")!=0&&paths[i].includes("!")) {if(alr==false) {result.push(paths[i]); alr=true}}
+				else if (paths[i].indexOf("(")!=0&&paths[i].includes("@")) {if(alr==false) {result.push(paths[i]); alr=true}}
+				else if (paths[i].indexOf("(")!=0&&paths[i].includes("$")) {if(alr==false) {result.push(paths[i]); alr=true}}
+				else if (paths[i].indexOf("(")!=0&&paths[i].includes("%")) {if(alr==false) {result.push(paths[i]); alr=true}}
+				else if (paths[i].indexOf("(")!=0&&paths[i].includes("^")) {if(alr==false) {result.push(paths[i]); alr=true}}
+				else if (paths[i].indexOf("(")!=0&&paths[i].includes("&")) {if(alr==false) {result.push(paths[i]); alr=true}}
 				else {
 					if (paths[i].indexOf("Q")==0||paths[i].indexOf("R")==0||paths[i].indexOf("S")==0||paths[i].indexOf("T")==0||paths[i].indexOf("U")==0||paths[i].indexOf("V")==0||paths[i].indexOf("W")==0||paths[i].indexOf("X")==0||paths[i].indexOf("Y")==0) {
-						if (spaces(paths[i])==true) {result.push(paths[i])}
+						if (spaces(paths[i])==true) {if(alr==false) {result.push(paths[i]); alr=true}}
 					} else if (paths[i].indexOf("(")==0) {
 						if (paths[i].indexOf("Q")==1||paths[i].indexOf("R")==1||paths[i].indexOf("S")==1||paths[i].indexOf("T")==1||paths[i].indexOf("U")==1||paths[i].indexOf("V")==1||paths[i].indexOf("W")==1||paths[i].indexOf("X")==1||paths[i].indexOf("Y")==1) {
-							if (paths[i].includes("~")&&paths[i].includes("!")) {result.push(paths[i])}
-							else if (paths[i].includes("~")&&paths[i].includes("@")) {result.push(paths[i])}
-							else if (paths[i].includes("~")&&paths[i].includes("$")) {result.push(paths[i])}
-							else if (paths[i].includes("~")&&paths[i].includes("%")) {result.push(paths[i])}
-							else if (paths[i].includes("~")&&paths[i].includes("^")) {result.push(paths[i])}
-							else if (paths[i].includes("~")&&paths[i].includes("&")) {result.push(paths[i])}
-							else if (paths[i].includes("!")&&paths[i].includes("@")) {result.push(paths[i])}
-							else if (paths[i].includes("!")&&paths[i].includes("$")) {result.push(paths[i])}
-							else if (paths[i].includes("!")&&paths[i].includes("%")) {result.push(paths[i])}
-							else if (paths[i].includes("!")&&paths[i].includes("^")) {result.push(paths[i])}
-							else if (paths[i].includes("!")&&paths[i].includes("&")) {result.push(paths[i])}
-							else if (paths[i].includes("@")&&paths[i].includes("$")) {result.push(paths[i])}
-							else if (paths[i].includes("@")&&paths[i].includes("%")) {result.push(paths[i])}
-							else if (paths[i].includes("@")&&paths[i].includes("^")) {result.push(paths[i])}
-							else if (paths[i].includes("@")&&paths[i].includes("&")) {result.push(paths[i])}
-							else if (paths[i].includes("$")&&paths[i].includes("%")) {result.push(paths[i])}
-							else if (paths[i].includes("$")&&paths[i].includes("^")) {result.push(paths[i])}
-							else if (paths[i].includes("$")&&paths[i].includes("&")) {result.push(paths[i])}
-							else if (paths[i].includes("%")&&paths[i].includes("^")) {result.push(paths[i])}
-							else if (paths[i].includes("%")&&paths[i].includes("&")) {result.push(paths[i])}
-							else if (paths[i].includes("^")&&paths[i].includes("&")) {result.push(paths[i])}
+							if (paths[i].includes("~")&&paths[i].includes("!")) {if(alr==false) {result.push(paths[i]); alr=true}}
+							else if (paths[i].includes("~")&&paths[i].includes("@")) {if(alr==false) {result.push(paths[i]); alr=true}}
+							else if (paths[i].includes("~")&&paths[i].includes("$")) {if(alr==false) {result.push(paths[i]); alr=true}}
+							else if (paths[i].includes("~")&&paths[i].includes("%")) {if(alr==false) {result.push(paths[i]); alr=true}}
+							else if (paths[i].includes("~")&&paths[i].includes("^")) {if(alr==false) {result.push(paths[i]); alr=true}}
+							else if (paths[i].includes("~")&&paths[i].includes("&")) {if(alr==false) {result.push(paths[i]); alr=true}}
+							else if (paths[i].includes("!")&&paths[i].includes("@")) {if(alr==false) {result.push(paths[i]); alr=true}}
+							else if (paths[i].includes("!")&&paths[i].includes("$")) {if(alr==false) {result.push(paths[i]); alr=true}}
+							else if (paths[i].includes("!")&&paths[i].includes("%")) {if(alr==false) {result.push(paths[i]); alr=true}}
+							else if (paths[i].includes("!")&&paths[i].includes("^")) {if(alr==false) {result.push(paths[i]); alr=true}}
+							else if (paths[i].includes("!")&&paths[i].includes("&")) {if(alr==false) {result.push(paths[i]); alr=true}}
+							else if (paths[i].includes("@")&&paths[i].includes("$")) {if(alr==false) {result.push(paths[i]); alr=true}}
+							else if (paths[i].includes("@")&&paths[i].includes("%")) {if(alr==false) {result.push(paths[i]); alr=true}}
+							else if (paths[i].includes("@")&&paths[i].includes("^")) {if(alr==false) {result.push(paths[i]); alr=true}}
+							else if (paths[i].includes("@")&&paths[i].includes("&")) {if(alr==false) {result.push(paths[i]); alr=true}}
+							else if (paths[i].includes("$")&&paths[i].includes("%")) {if(alr==false) {result.push(paths[i]); alr=true}}
+							else if (paths[i].includes("$")&&paths[i].includes("^")) {if(alr==false) {result.push(paths[i]); alr=true}}
+							else if (paths[i].includes("$")&&paths[i].includes("&")) {if(alr==false) {result.push(paths[i]); alr=true}}
+							else if (paths[i].includes("%")&&paths[i].includes("^")) {if(alr==false) {result.push(paths[i]); alr=true}}
+							else if (paths[i].includes("%")&&paths[i].includes("&")) {if(alr==false) {result.push(paths[i]); alr=true}}
+							else if (paths[i].includes("^")&&paths[i].includes("&")) {if(alr==false) {result.push(paths[i]); alr=true}}
 						}
 					}
 				}
@@ -97,15 +97,15 @@ module.exports = {
 				tiles_start=tiles_start+1;
 				var tiles_length=paths[i].substr(tiles_start, paths[i].length);
 				tiles_length=tiles_length.substr(0, tiles_length.length-1);
-				if (tiles(tiles_length)==true) {result.push(paths[i])}
+				if (tiles(tiles_length)==true) {if(alr==false) {result.push(paths[i]); alr=true}}
 				var paths1=paths[i].substr(0, tiles_start-1);
 				if (paths1.substr(paths1.length-1, paths1.length)===")") {paths1=paths1.substr(0, paths1.length-1)}
 				if (paths1.indexOf("(")==0) {paths1=paths1.substr(1, paths1.length)}
 				var paths_no_arp=paths1.replace(/\x21|\x24|\x25|\x26|\x2e|\x40|\x5e|\x7e/g, ',').split(",");
 				var correct_notes = ["A-3", "#A-3", "B-3", "C-2", "#C-2", "D-2", "#D-2", "E-2", "F-2", "#F-2", "G-2", "#G-2", "A-2", "#A-2", "B-2", "C-1", "#C-1", "D-1", "#D-1", "E-1", "F-1", "#F-1", "G-1", "#G-1", "A-1", "#A-1", "B-1", "c", "#c", "d", "#d", "e", "f", "#f", "g", "#g", "a", "#a", "b", "c1", "#c1", "d1", "#d1", "e1", "f1", "#f1", "g1", "#g1", "a1", "#a1", "b1", "c2", "#c2", "d2", "#d2", "e2", "f2", "#f2", "g2", "#g2", "a2", "#a2", "b2", "c3", "#c3", "d3", "#d3", "e3", "f3", "#f3", "g3", "#g3", "a3", "#a3", "b3", "c4", "#c4", "d4", "#d4", "e4", "f4", "#f4", "g4", "#g4", "a4", "#a4", "b4", "c5", "mute", "empty"];
 				for (j=0; j<paths_no_arp.length; j++) {
-					if (paths_no_arp[j]==="") {result.push(paths[i]); break;}
-					if (spaces(paths_no_arp[j])==true) {if (correct_notes.indexOf(paths_no_arp[j])==-1) {result.push(paths[i]); break;}}
+					if (paths_no_arp[j]==="") {if(alr==false) {result.push(paths[i]); alr=true}; break;}
+					if (spaces(paths_no_arp[j])==true) {if (correct_notes.indexOf(paths_no_arp[j])==-1) {if(alr==false) {result.push(paths[i]); alr=true}; break;}}
 				}
 			}
 		}
